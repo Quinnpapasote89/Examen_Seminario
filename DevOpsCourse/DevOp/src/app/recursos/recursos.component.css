@@ -1,0 +1,22 @@
+.jumbotron {
+    background-image: url('https://www.jadeglobal.com/sites/default/files/styles/webp/public/2022-08/devops-testing-services-min.jpg.webp?itok=pe4GvlD5');
+    background-size:cover;
+    background-position: top;
+    height:20em;
+    color: white;
+    padding: 0.5em;
+    border-radius: 10px;
+  }
+  
+  h2 {
+    margin-top: 2rem;
+  }
+
+
+.container{
+    margin-bottom: 1em;
+}
+
+.links{
+    font-size: 1.2em;
+}
