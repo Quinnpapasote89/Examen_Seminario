@@ -1,1 +1,84 @@
-<p>cursos works!</p>
+<app-header></app-header>
+<!-- course.component.html -->
+<div class="container">
+    <div class="jumbotron">
+      <h1 class="display-4">{{ title }}</h1>
+      <p class="lead">Selecciona una sección para ver su contenido.</p>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-4">
+        <div class="list-group">
+          <button type="button" class="list-group-item list-group-item-action" *ngFor="let section of sections" (click)="selectSection(section)">
+            {{ section.name }}
+          </button>
+        </div>
+      </div>
+  
+      <div class="col-md-8">
+        <div *ngIf="selectedSection.id !== '3' && selectedSection.id !== '7'">
+          <h2>{{ selectedSection.name }}</h2>
+          <p [innerHTML]="selectedSection.content"></p>
+        </div>
+  
+        <div *ngIf="selectedSection.id === '3'">
+          <h2>{{ selectedSection.name }}</h2>
+          <form (submit)="onSubmit($event)">
+            <div class="form-group" *ngFor="let pregunta of preguntas">
+              <label>{{pregunta.pregunta}}</label>
+              <div *ngFor="let opciones of pregunta.opciones">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="{{pregunta.pregunta}}" id="{{pregunta.pregunta}}{{opciones}}" value="{{opciones}}" (change)="onAnswerChange(pregunta.question, opciones)" required>
+                <label class="form-check-label" for="{{pregunta.pregunta}}+{{opciones}}">
+                  {{opciones}}
+                </label>
+              </div>
+            </div>
+              <!-- Agrega más opciones aquí -->
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
+        </div>
+
+        <div *ngIf="selectedSection.id === '7'">
+            <h2>{{ selectedSection.name }}</h2>
+            <form (submit)="onSubmit2($event)">
+              <div class="form-group" *ngFor="let pregunta of preguntas2">
+                <label>{{pregunta.pregunta}}</label>
+                <div *ngFor="let opciones of pregunta.opciones">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="{{pregunta.pregunta}}" id="{{pregunta.pregunta}}{{opciones}}" value="{{opciones}}" (change)="onAnswerChange2(pregunta.question, opciones)" required>
+                  <label class="form-check-label" for="{{pregunta.pregunta}}+{{opciones}}">
+                    {{opciones}}
+                  </label>
+                </div>
+              </div>
+                <!-- Agrega más opciones aquí -->
+              </div>
+              <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+          </div>
+      </div>
+    </div>
+      <!-- Modal -->
+  <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="resultModalLabel">Resultado del examen</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="resultModalBody">
+          <!-- Aquí se mostrará el resultado del examen -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  
